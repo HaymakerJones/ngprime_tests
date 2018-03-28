@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarDemoComponent implements OnInit {
 
+  displaySideBar = false;
+  contentFlag = 1;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleSideBar() {
+    this.displaySideBar = !this.displaySideBar;
+  }
+
+  contentSelector(id: number) {
+    this.contentFlag = id;
+    this.displaySideBar = false;
   }
 
 }
