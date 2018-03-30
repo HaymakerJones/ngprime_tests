@@ -11,7 +11,9 @@ import { Observable } from 'rxjs/Rx';
 })
 export class DatatableComponent implements OnInit {
 
-  personList: Observable<Person[]>;
+  personList: Person[] = [];
+  //personList: Observable<Person[]>;
+  cols: any[];
 
   personForm: FormGroup;
   formErrors = {
@@ -38,7 +40,15 @@ export class DatatableComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.personList = this.ds.persons;
+    this.ds.persons.subscribe(
+      data => this.personList = data
+    );
+    //this.personList = this.ds.persons;
+    this.cols = [
+      { field: 'first', header: 'First Name' },
+      { field: 'last', header: 'Last Name' },
+      { field: 'age', header: 'Age' },
+    ];
     this.createForm();
   }
 
