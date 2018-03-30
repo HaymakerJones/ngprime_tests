@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { SideBarDemoModule } from './sidebar-demo/sidebar-demo.module';
+import { DatatableModule } from './datatable-demo/datatable.module';
 
 
 
@@ -17,6 +18,7 @@ import { SideBarDemoModule } from './sidebar-demo/sidebar-demo.module';
     BrowserModule,
     BrowserAnimationsModule,
     SideBarDemoModule,
+    DatatableModule,
     AppRoutingModule
   ],
   providers: [

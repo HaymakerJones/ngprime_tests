@@ -1,0 +1,26 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div *ngFor="let person of personList | async">{{person | json}}</div>
+    </div>
+</div>
+
+<form [formGroup]="personForm" (ngSubmit)="addPerson( personForm.value )">
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-4">
+            <div class="ui-inputgroup">
+                <input type="text" pInputText formControlName="first" placeholder="First name">
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-4">
+            <div class="ui-inputgroup">
+                <input type="text" pInputText formControlName="last" placeholder="Last name">
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-4">
+            <div class="ui-inputgroup">
+                <input type="number" formControlName="age" placeholder="Age">
+            </div>
+        </div>
+    </div>
+    <p-button type="submit" label="Add" styleClass="ui-button-info"></p-button>
+</form>
