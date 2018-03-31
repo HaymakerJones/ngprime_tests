@@ -58,7 +58,7 @@ export class DatatableComponent implements OnInit {
     this.personForm = this.fb.group({
       first: ['', Validators.required],
       last: ['', Validators.required],
-      age: ['', Validators.required]
+      age: [1, Validators.required]
     });
 
     this.personForm.valueChanges.subscribe(

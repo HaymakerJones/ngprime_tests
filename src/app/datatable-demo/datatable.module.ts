@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
+import { SpinnerModule } from 'primeng/spinner';
 import { DatatableComponent } from './datatable/datatable.component';
 import { DATATABLE_PROVIDER } from './datatable.service';
 
@@ -18,7 +19,8 @@ import { DATATABLE_PROVIDER } from './datatable.service';
         ButtonModule,
         TableModule,
         DialogModule,
-        FormsModule
+        FormsModule,
+        SpinnerModule
     ],
     exports: [
         DatatableComponent
