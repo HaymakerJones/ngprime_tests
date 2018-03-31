@@ -17,6 +17,7 @@ export class DatatableService {
     //action streams
     create: Subject<Person> = new Subject<Person>();
     remove: Subject<Person> = new Subject<Person>();
+    change: Subject<Person> = new Subject<Person>();
 
     constructor() {
         this.persons =
@@ -42,10 +43,32 @@ export class DatatableService {
                 }
             }
         );
+
+        this.change.map(
+            (person: Person) => {
+                return (persons: Person[]) => {
+                    return persons.forEach(
+                        p => {
+                            if (p.first === person.first) {
+                                p = person;
+                            }
+                        }
+                    );
+                }
+            }
+        );
     }
 
     addPerson(person: Person): void {
         this.create.next(person);
+    }
+
+    removePerson(person: Person): void {
+        this.remove.next(person);
+    }
+
+    changePerson(person: Person): void {
+        this.change.next(person);
     }
 }
 
