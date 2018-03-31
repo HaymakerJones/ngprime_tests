@@ -12,8 +12,11 @@ import { Observable } from 'rxjs/Rx';
 export class DatatableComponent implements OnInit {
 
   personList: Person[] = [];
-  //personList: Observable<Person[]>;
   cols: any[];
+  displayDialog: boolean;
+  person: Person;
+  selectedPerson: Person;
+  newPerson: boolean;
 
   personForm: FormGroup;
   formErrors = {
@@ -43,7 +46,6 @@ export class DatatableComponent implements OnInit {
     this.ds.persons.subscribe(
       data => this.personList = data
     );
-    //this.personList = this.ds.persons;
     this.cols = [
       { field: 'first', header: 'First Name' },
       { field: 'last', header: 'Last Name' },
@@ -76,6 +78,25 @@ export class DatatableComponent implements OnInit {
         }
       }
     }
+  }
+
+  showAddDialog() {
+    this.newPerson = true;
+    this.person = new Person({});
+    this.displayDialog = true;
+  }
+
+  save() {
+    let persons = [...this.personList];
+    if (this.newPerson) {
+      persons.push(this.person);
+    }
+    else {
+      persons[this.personList.indexOf(this.selectedPerson)] = this.person;
+    }
+
+    this.personList = persons;
+
   }
 
   addPerson(f: any) {
