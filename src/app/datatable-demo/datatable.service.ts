@@ -16,6 +16,7 @@ export class DatatableService {
 
     //action streams
     create: Subject<Person> = new Subject<Person>();
+    remove: Subject<Person> = new Subject<Person>();
 
     constructor() {
         this.persons =
@@ -31,6 +32,16 @@ export class DatatableService {
                 }
             }
         ).subscribe(this.updates);
+
+        this.remove.map(
+            (person: Person): PersonOperation => {
+                return (persons: Person[]) => {
+                    return persons.filter(
+                        p => person.first !== p.first
+                    );
+                }
+            }
+        );
     }
 
     addPerson(person: Person): void {
