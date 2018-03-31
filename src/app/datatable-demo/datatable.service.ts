@@ -42,12 +42,12 @@ export class DatatableService {
                     );
                 }
             }
-        );
+        ).subscribe(this.updates);
 
         this.change.map(
             (person: Person) => {
                 return (persons: Person[]) => {
-                    return persons.forEach(
+                    return persons.map(
                         p => {
                             if (p.first === person.first) {
                                 p = person;
@@ -56,7 +56,7 @@ export class DatatableService {
                     );
                 }
             }
-        );
+        ).subscribe(this.updates);
     }
 
     addPerson(person: Person): void {

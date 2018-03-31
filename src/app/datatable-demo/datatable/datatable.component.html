@@ -1,6 +1,7 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
-        <p-table [columns]="cols" [value]="personList">
+        <p-table [columns]="cols" [value]="personList" selectionMode="single" [(selection)]="person" (onRowSelect)="onRowSelect($event)"
+            [paginator]="true" [rows]="15">
             <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th *ngFor="let col of columns">
@@ -9,13 +10,47 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-person let-columns="columns">
-                <tr>
+                <tr [pSelectableRow]="person">
                     <td *ngFor="let col of columns">
                         {{person[col.field]}}
                     </td>
                 </tr>
             </ng-template>
         </p-table>
+        <p-dialog header="Person Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="300">
+            <div class="ui-g ui-fluid" *ngIf="person">
+                <div class="ui-g-12">
+                    <div class="ui-g-4">
+                        <label for="firstName">First Name</label>
+                    </div>
+                    <div class="ui-g-8">
+                        <input pInputText id="firstName" [(ngModel)]="person.first" />
+                    </div>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-4">
+                        <label for="lastName">Last Name</label>
+                    </div>
+                    <div class="ui-g-8">
+                        <input pInputText id="lastName" [(ngModel)]="person.last" />
+                    </div>
+                </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-4">
+                        <label for="userAge">Age</label>
+                    </div>
+                    <div class="ui-g-8">
+                        <input pInputText id="userAge" [(ngModel)]="person.age" />
+                    </div>
+                </div>
+            </div>
+            <p-footer>
+                <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                    <button type="submit" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+                    <button type="submit" pButton icon="fa-check" (click)="save()" label="Save"></button>
+                </div>
+            </p-footer>
+        </p-dialog>
     </div>
 </div>
 

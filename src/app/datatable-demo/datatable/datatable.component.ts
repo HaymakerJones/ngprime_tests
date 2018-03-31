@@ -10,7 +10,6 @@ import { Observable } from 'rxjs/Rx';
   styleUrls: ['./datatable.component.css'],
 })
 export class DatatableComponent implements OnInit {
-
   personList: Person[] = [];
   cols: any[];
   displayDialog: boolean;
@@ -46,6 +45,7 @@ export class DatatableComponent implements OnInit {
     this.ds.persons.subscribe(
       data => this.personList = data
     );
+
     this.cols = [
       { field: 'first', header: 'First Name' },
       { field: 'last', header: 'Last Name' },
@@ -74,29 +74,16 @@ export class DatatableComponent implements OnInit {
 
       if (input.invalid && input.dirty) {
         for (let error in input.errors) {
-          this.formErrors[field] = this.validateForm[field][error];
+          this.formErrors[field] = this.validationMessages[field][error];
         }
       }
     }
   }
 
-  showAddDialog() {
-    this.newPerson = true;
-    this.person = new Person({});
+  onRowSelect(event: any) {
+    this.person = new Person(event.data);
+    //this.person = Object.assign({}, event.data);
     this.displayDialog = true;
-  }
-
-  save() {
-    let persons = [...this.personList];
-    if (this.newPerson) {
-      persons.push(this.person);
-    }
-    else {
-      persons[this.personList.indexOf(this.selectedPerson)] = this.person;
-    }
-
-    this.personList = persons;
-
   }
 
   addPerson(f: any) {
@@ -107,6 +94,18 @@ export class DatatableComponent implements OnInit {
     }));
 
     this.personForm.reset();
+  }
+
+  save(): void {
+    this.ds.changePerson(this.person);
+    this.person = null;
+    this.displayDialog = false;
+  }
+
+  delete(): void {
+    this.ds.removePerson(this.person);
+    this.person = null;
+    this.displayDialog = false;
   }
 
 }
