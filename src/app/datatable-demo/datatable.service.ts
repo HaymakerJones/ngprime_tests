@@ -47,13 +47,14 @@ export class DatatableService {
         this.change.map(
             (person: Person) => {
                 return (persons: Person[]) => {
-                    return persons.map(
-                        p => {
-                            if (p.first === person.first) {
-                                p = person;
+                    persons.forEach(
+                        data => {
+                            if (data.id === person.id) {
+                                data = Object.assign(data, person);
                             }
                         }
                     );
+                    return persons;
                 }
             }
         ).subscribe(this.updates);
