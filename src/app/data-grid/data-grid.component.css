@@ -1,0 +1,18 @@
+.page-container {
+  border: solid black 1 px; }
+
+.card-container {
+  border: solid blue 1px;
+  margin: 0 auto; }
+
+.item-1 {
+  border: solid red 1px; }
+
+.item-2 {
+  border: solid red 1px; }
+
+.item-3 {
+  border: solid red 1px; }
+
+.inner {
+  border: solid green 1px; }

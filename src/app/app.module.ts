@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 
 import { SideBarDemoModule } from './sidebar-demo/sidebar-demo.module';
 import { DatatableModule } from './datatable-demo/datatable.module';
+import { DataGridComponent } from './data-grid/data-grid.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    DataGridComponent,
   ],
   imports: [
     BrowserModule,
