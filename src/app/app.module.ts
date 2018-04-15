@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { SideBarDemoModule } from './sidebar-demo/sidebar-demo.module';
 import { DatatableModule } from './datatable-demo/datatable.module';
 import { DataGridComponent } from './data-grid/data-grid.component';
+import { TabviewComponent } from './tabview/tabview.component';
+import { TabViewModule } from 'primeng/tabview';
 
 
 
@@ -15,12 +17,14 @@ import { DataGridComponent } from './data-grid/data-grid.component';
   declarations: [
     AppComponent,
     DataGridComponent,
+    TabviewComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     SideBarDemoModule,
     DatatableModule,
+    TabViewModule,
     AppRoutingModule
   ],
   providers: [
