@@ -12,7 +12,7 @@ export class TabviewComponent implements OnInit, AfterViewInit {
     { name: 'Justin', age: 26 },
     { name: 'kristen', age: 29 },
     { name: 'Dwight', age: 38 },
-    { name: '(+) Add new person', age: null },
+    //{ name: '(+) Add new person', age: null },
   ];
 
   @ViewChildren(TabPanel) panels: QueryList<TabPanel>;
@@ -25,18 +25,19 @@ export class TabviewComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.panels.changes.subscribe(
       data => {
-        console.log(data);
-        return data._results[data._results.length - 2].header = "test";
+        return data._results[data._results.length - 2].header = "Test";
       }
     );
   }
 
   addNewPerson(event: any) {
     console.log(event.index);
-    if (event.index === this.people.length - 1) {
+
+
+    if (event.index === this.people.length) {
       this.people.splice(event.index, 0, { name: 'New', age: null });
-      event.index = this.people.length - 2;
     }
+
   }
 
 }

@@ -1,3 +1,4 @@
 <p-tabView (onChange)="addNewPerson( $event )">
   <p-tabPanel [header]="person.name" *ngFor="let person of people; let i = index" [closable]="true">{{person.age}}</p-tabPanel>
+  <p-tabPanel header="Add new"></p-tabPanel>
 </p-tabView>
